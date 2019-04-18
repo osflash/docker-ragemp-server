@@ -15,12 +15,12 @@ docker pull eisengrind/docker-ragemp-server
 You can choose whether you want to start the server directly
 
 ```sh
-docker run -p 22005:22005/udp -p 22006:22006/tcp -it eisengrind/ragemp-server:1
+docker run -p 22005:22005/udp -p 22006:22006/tcp -it eisengrind/ragemp-server:latest
 ```
 
 or use the docker image for custom images in your **Dockerfile**
 
 ```sh
-FROM eisengrind/ragemp-server:1
+FROM eisengrind/ragemp-server:latest
 [...]
 ```
