@@ -7,6 +7,8 @@ LABEL versioning "simple"
 ENV RAGEMP_SERVER_SRC_FILE ragemp-srv-037.tar.gz
 ENV RAGEMP_SERVER_SRC https://cdn.rage.mp/lin/${RAGEMP_SERVER_SRC_FILE}
 
+COPY ./entrypoint.sh /opt/ragemp/
+
 RUN apt-get update && \
     apt-get install -y libunwind8 icu-devtools curl libssl-dev wget && \
     mkdir -p /opt/ragemp && \
@@ -17,11 +19,10 @@ RUN apt-get update && \
     mv ragemp-srv/* ./ && \
     rm -R ragemp-srv/ && \
     rm -f conf.json && \
-    chmod -R 770 ./
+    chmod -R 770 ./ && \
+    chmod +x ./entrypoint.sh
 
 WORKDIR /opt/ragemp/
-
-COPY ./entrypoint.sh /opt/ragemp/
 
 ENTRYPOINT [ "./entrypoint.sh" ]
 
