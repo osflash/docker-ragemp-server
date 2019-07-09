@@ -16,11 +16,14 @@ RUN apt-get update && \
     rm ${RAGEMP_SERVER_SRC_FILE} && \
     mv ragemp-srv/* ./ && \
     rm -R ragemp-srv/ && \
+    rm -f conf.json && \
     chmod -R 770 ./
 
 WORKDIR /opt/ragemp/
 
-ENTRYPOINT [ "./server" ]
+COPY ./entrypoint.sh /opt/ragemp/
+
+ENTRYPOINT [ "./entrypoint.sh" ]
 
 EXPOSE 22005/udp
 EXPOSE 22006/tcp
